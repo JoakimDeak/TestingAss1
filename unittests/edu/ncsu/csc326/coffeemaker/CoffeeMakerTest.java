@@ -12,6 +12,7 @@ import junit.framework.TestCase;
 public class CoffeeMakerTest extends TestCase {
 	
 	private CoffeeMaker cm;
+	private Inventory inv;
 	private Recipe r1;
 	private Recipe r2;
 	private Recipe r3;
@@ -19,6 +20,7 @@ public class CoffeeMakerTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		cm = new CoffeeMaker();
+		inv = new Inventory();
 		
 		//Set up for r1
 		r1 = new Recipe();
@@ -101,6 +103,71 @@ public class CoffeeMakerTest extends TestCase {
 	public void testMakeCoffee() {
 		cm.addRecipe(r1);
 		assertEquals(25, cm.makeCoffee(0, 75));
+	}
+
+	public void testAddChocolate(){
+		try{
+			inv.addChocolate("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e){
+
+		}
+
+		try{
+			inv.addChocolate("E");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e ){
+
+		}
+
+	}
+
+	public void testAddCoffee(){
+		try{
+			inv.addCoffee("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e){
+
+		}
+
+		try{
+			inv.addCoffee("E");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e ){
+
+		}
+	}
+
+	public void testAddMilk(){
+		try{
+			inv.addMilk("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e){
+
+		}
+
+		try{
+			inv.addMilk("E");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e ){
+
+		}
+	}
+
+	public void testAddSugar(){
+		try{
+			inv.addSugar("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e){
+
+		}
+
+		try{
+			inv.addSugar("E");
+			fail("Inventory Exception should be thrown when entering negative integer");
+		} catch(InventoryException e ){
+
+		}
 	}
 
 }
