@@ -1,6 +1,7 @@
 package edu.ncsu.csc326.coffeemaker;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
+import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 import junit.framework.TestCase;
 
 /**
@@ -21,7 +22,7 @@ public class CoffeeMakerTest extends TestCase {
 	protected void setUp() throws Exception {
 		cm = new CoffeeMaker();
 		inv = new Inventory();
-		
+
 		//Set up for r1
 		r1 = new Recipe();
 		r1.setName("Coffee");
@@ -115,7 +116,7 @@ public class CoffeeMakerTest extends TestCase {
 
 		try{
 			inv.addChocolate("E");
-			fail("Inventory Exception should be thrown when entering negative integer");
+			fail("Inventory Exception should be thrown when entering non integer value");
 		} catch(InventoryException e ){
 
 		}
@@ -132,7 +133,7 @@ public class CoffeeMakerTest extends TestCase {
 
 		try{
 			inv.addCoffee("E");
-			fail("Inventory Exception should be thrown when entering negative integer");
+			fail("Inventory Exception should be thrown when entering non integer value");
 		} catch(InventoryException e ){
 
 		}
@@ -148,7 +149,7 @@ public class CoffeeMakerTest extends TestCase {
 
 		try{
 			inv.addMilk("E");
-			fail("Inventory Exception should be thrown when entering negative integer");
+			fail("Inventory Exception should be thrown when entering a non integer value");
 		} catch(InventoryException e ){
 
 		}
@@ -164,10 +165,109 @@ public class CoffeeMakerTest extends TestCase {
 
 		try{
 			inv.addSugar("E");
-			fail("Inventory Exception should be thrown when entering negative integer");
+			fail("Inventory Exception should be thrown when entering non integer value");
 		} catch(InventoryException e ){
 
 		}
+	}
+
+	public void testSetAmtChocolate(){
+		try{
+			r1.setAmtChocolate("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+
+		}catch(RecipeException e){
+
+		}try{
+			r1.setAmtChocolate("E");
+			fail("Inventory Exception should be thrown when entering non integer value");
+		} catch(RecipeException e){
+
+		}
+	}
+
+	public void testSetAmtCoffee(){
+		try{
+			r1.setAmtCoffee("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+
+		}catch(RecipeException e){
+
+		}try{
+			r1.setAmtCoffee("E");
+			fail("Inventory Exception should be thrown when entering non integer value");
+		} catch(RecipeException e){
+
+		}
+
+	}
+
+	public void testSetAmtMilk(){
+		try{
+			r1.setAmtMilk("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+
+		}catch(RecipeException e){
+
+		}try{
+			r1.setAmtMilk("E");
+			fail("Inventory Exception should be thrown when entering non integer value");
+		} catch(RecipeException e){
+
+		}
+	}
+
+	public void testSetAmtSugar(){
+		try{
+			r1.setAmtSugar("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+
+		}catch(RecipeException e){
+
+		}try{
+			r1.setAmtSugar("E");
+			fail("Inventory Exception should be thrown when entering non integer value");
+		} catch(RecipeException e){
+
+		}
+	}
+
+	public void testSetPrice(){
+		try{
+			r1.setPrice("-42");
+			fail("Inventory Exception should be thrown when entering negative integer");
+
+		}catch(RecipeException e){
+
+		}try{
+			r1.setPrice("E");
+			fail("Inventory Exception should be thrown when entering non integer value");
+		} catch(RecipeException e){
+
+		}
+	}
+
+	public void testEnoughIngredients(){
+			boolean ans1 = true;
+			boolean val1;
+			boolean val2;
+			val1 = inv.enoughIngredients(r1);
+			assertEquals(ans1,val1);
+			val2 = inv.enoughIngredients(r4);
+			assertEquals(ans1, val2);
+	}
+
+	public void testUseIngredients(){
+			boolean ans = false;
+			boolean val;
+			inv.useIngredients(r1);
+			inv.useIngredients(r1);
+			inv.useIngredients(r1);
+			inv.useIngredients(r1);
+			inv.useIngredients(r1);
+			inv.useIngredients(r1);
+			val = inv.useIngredients(r1);
+			assertEquals(ans, val);
 	}
 
 }
