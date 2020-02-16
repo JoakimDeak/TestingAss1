@@ -61,7 +61,7 @@ public class CoffeeMakerTest extends TestCase {
 		
 		super.setUp();
 	}
-	
+	/*	commented out due to being one of the example tests
 	public void testAddInventory() {
 		try {
 			cm.addInventory("4","7","0","9");
@@ -77,7 +77,7 @@ public class CoffeeMakerTest extends TestCase {
 		} catch (InventoryException e) {
 			//success if thrown
 		}
-	}
+	}*/
 
 	public void testDeleteRecipe() {
 		cm.addRecipe(r1);
@@ -100,11 +100,11 @@ public class CoffeeMakerTest extends TestCase {
 				"Sugar: " + 15 + "\n" +
 				"Chocolate: " + 15 + "\n" , cm.checkInventory());
 	}
-
+	/*	commented out due to being one of the example tests
 	public void testMakeCoffee() {
 		cm.addRecipe(r1);
 		assertEquals(25, cm.makeCoffee(0, 75));
-	}
+	}*/
 
 	public void testAddChocolate(){
 		try{
