@@ -1,0 +1,36 @@
+MODULE main
+VAR
+	traffic_light: {RED, YELLOW, GREEN};
+	ped_light: {WAIT, WALK, FLASH};
+	button: {RESET, SET};
+
+ASSIGN
+	init(traffic_light) := RED;
+	next(traffic_light) := case
+		traffic_light) := button=RESET:
+			GREEN;
+		traffic_light=RED: RED;
+		traffic_light=GREEN & button=SET:
+			{GREEN,YELLOW};
+		traffic_light=GREEN: GREEN;
+		traffic_light=YELLOW:
+			{YELLOW, RED};
+		TRUE: {RED};
+	esac;
+init(ped_light) := WAIT; 
+	next(ped_light) := case 
+		ped_light=WAIT &
+			traffic_light=RED: WALK;
+		ped_light=WAIT: WAIT;
+		ped_light=WALK: {WALK,FLASH};
+		ped_light=FLASH: {FLASH, WAIT};
+		TRUE: {WAIT};
+	esac;
+	next(button) := case
+		button=SET & ped_light=WALK: RESET;
+		button=SET: SET;
+		button=RESET & traffic_light=GREEN:
+			{RESET,SET};
+		button=RESET: RESET;
+		TRUE: {RESET};
+	esac;
